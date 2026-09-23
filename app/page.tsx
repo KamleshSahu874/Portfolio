@@ -21,6 +21,10 @@ import {
 } from "lucide-react";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 
+/* =========================================================
+   PROJECTS
+========================================================= */
+
 const projects = [
   {
     number: "01",
@@ -40,7 +44,8 @@ const projects = [
       "A real-time computer vision application that uses hand gestures to control the Windows system volume. The distance between the thumb and index finger determines the volume level.",
     tech: ["Python", "OpenCV", "MediaPipe", "NumPy"],
     icon: "✋",
-    github: "https://github.com/KamleshSahu874/HandGestureVolumeController",
+    github:
+      "https://github.com/KamleshSahu874/HandGestureVolumeController",
   },
   {
     number: "03",
@@ -53,6 +58,10 @@ const projects = [
     github: "https://github.com/KamleshSahu874/smartbranch360",
   },
 ];
+
+/* =========================================================
+   CERTIFICATIONS
+========================================================= */
 
 const certifications = [
   {
@@ -113,6 +122,10 @@ const certifications = [
   },
 ];
 
+/* =========================================================
+   SKILLS
+========================================================= */
+
 const skills = [
   {
     title: "Programming",
@@ -143,9 +156,210 @@ const skills = [
   },
 ];
 
+/* =========================================================
+   MOVING BACKGROUND
+   Everything is inside this page.tsx
+========================================================= */
+
+function MovingBackground({ dark }: { dark: boolean }) {
+  const particles = [
+    { left: "8%", top: "18%", size: 3, delay: 0 },
+    { left: "18%", top: "72%", size: 2, delay: 1.2 },
+    { left: "30%", top: "32%", size: 3, delay: 2 },
+    { left: "42%", top: "82%", size: 2, delay: 0.5 },
+    { left: "52%", top: "18%", size: 3, delay: 1.7 },
+    { left: "64%", top: "64%", size: 2, delay: 2.5 },
+    { left: "74%", top: "27%", size: 3, delay: 0.8 },
+    { left: "84%", top: "76%", size: 2, delay: 1.9 },
+    { left: "92%", top: "38%", size: 3, delay: 3 },
+    { left: "12%", top: "45%", size: 2, delay: 2.2 },
+    { left: "36%", top: "58%", size: 2, delay: 1 },
+    { left: "57%", top: "46%", size: 3, delay: 2.8 },
+    { left: "80%", top: "54%", size: 2, delay: 0.3 },
+  ];
+
+  return (
+    <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+      {/* Very subtle moving grid */}
+      <motion.div
+        className="absolute inset-[-20%]"
+        animate={{
+          x: ["0%", "2%", "0%", "-2%", "0%"],
+          y: ["0%", "-1%", "0%", "1%", "0%"],
+        }}
+        transition={{
+          duration: 25,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        style={{
+          backgroundImage: dark
+            ? `
+              linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)
+            `
+            : `
+              linear-gradient(rgba(0,0,0,0.025) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(0,0,0,0.025) 1px, transparent 1px)
+            `,
+          backgroundSize: "80px 80px",
+          maskImage:
+            "radial-gradient(ellipse at center, black 15%, transparent 75%)",
+          WebkitMaskImage:
+            "radial-gradient(ellipse at center, black 15%, transparent 75%)",
+        }}
+      />
+
+      {/* Main moving violet glow */}
+      <motion.div
+        className="absolute h-[500px] w-[500px] rounded-full blur-[150px]"
+        style={{
+          background: dark
+            ? "rgba(124,58,237,0.11)"
+            : "rgba(124,58,237,0.06)",
+        }}
+        animate={{
+          x: ["-10vw", "15vw", "5vw", "-10vw"],
+          y: ["-5vh", "20vh", "45vh", "-5vh"],
+          scale: [1, 1.2, 0.9, 1],
+        }}
+        transition={{
+          duration: 28,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+
+      {/* Second moving glow */}
+      <motion.div
+        className="absolute right-[-10%] top-[25%] h-[450px] w-[450px] rounded-full blur-[160px]"
+        style={{
+          background: dark
+            ? "rgba(99,102,241,0.08)"
+            : "rgba(99,102,241,0.045)",
+        }}
+        animate={{
+          x: ["0vw", "-18vw", "-5vw", "0vw"],
+          y: ["0vh", "18vh", "-12vh", "0vh"],
+          scale: [1, 0.85, 1.15, 1],
+        }}
+        transition={{
+          duration: 32,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+
+      {/* Third soft glow */}
+      <motion.div
+        className="absolute bottom-[-15%] left-[30%] h-[400px] w-[400px] rounded-full blur-[160px]"
+        style={{
+          background: dark
+            ? "rgba(168,85,247,0.07)"
+            : "rgba(168,85,247,0.035)",
+        }}
+        animate={{
+          x: ["-10vw", "15vw", "-5vw", "-10vw"],
+          y: ["0vh", "-15vh", "-5vh", "0vh"],
+        }}
+        transition={{
+          duration: 24,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+
+      {/* Floating particles */}
+      {particles.map((particle, index) => (
+        <motion.span
+          key={index}
+          className="absolute rounded-full bg-violet-400"
+          style={{
+            left: particle.left,
+            top: particle.top,
+            width: particle.size,
+            height: particle.size,
+            opacity: dark ? 0.35 : 0.16,
+            boxShadow: dark
+              ? "0 0 12px rgba(139,92,246,0.7)"
+              : "0 0 10px rgba(139,92,246,0.25)",
+          }}
+          animate={{
+            y: [-10, 15, -8, 0],
+            x: [-5, 8, -4, 0],
+            opacity: dark ? [0.15, 0.45, 0.2, 0.3] : [0.08, 0.22, 0.1, 0.16],
+          }}
+          transition={{
+            duration: 5 + index % 4,
+            delay: particle.delay,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+      ))}
+
+      {/* Slow diagonal light streak */}
+      <motion.div
+        className="absolute left-[-30%] top-[20%] h-px w-[80%]"
+        style={{
+          background: dark
+            ? "linear-gradient(90deg, transparent, rgba(139,92,246,0.18), transparent)"
+            : "linear-gradient(90deg, transparent, rgba(139,92,246,0.08), transparent)",
+          transform: "rotate(-18deg)",
+        }}
+        animate={{
+          x: ["0vw", "170vw"],
+          opacity: [0, 1, 0],
+        }}
+        transition={{
+          duration: 18,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+      />
+
+      {/* Another light streak */}
+      <motion.div
+        className="absolute left-[-30%] top-[65%] h-px w-[70%]"
+        style={{
+          background: dark
+            ? "linear-gradient(90deg, transparent, rgba(99,102,241,0.14), transparent)"
+            : "linear-gradient(90deg, transparent, rgba(99,102,241,0.07), transparent)",
+          transform: "rotate(15deg)",
+        }}
+        animate={{
+          x: ["0vw", "180vw"],
+          opacity: [0, 0.7, 0],
+        }}
+        transition={{
+          duration: 23,
+          delay: 6,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+      />
+
+      {/* Very subtle vignette */}
+      <div
+        className={`absolute inset-0 ${
+          dark
+            ? "bg-[radial-gradient(circle_at_center,transparent_30%,rgba(0,0,0,0.32)_100%)]"
+            : "bg-[radial-gradient(circle_at_center,transparent_35%,rgba(245,245,245,0.45)_100%)]"
+        }`}
+      />
+    </div>
+  );
+}
+
+/* =========================================================
+   MAIN PAGE
+========================================================= */
+
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [lightMode, setLightMode] = useState(false);
+
+  const dark = !lightMode;
 
   const scrollToSection = (id: string) => {
     setMenuOpen(false);
@@ -159,961 +373,986 @@ export default function Home() {
     }
   };
 
-  const dark = !lightMode;
-
   return (
     <main
-      className={`min-h-screen overflow-x-hidden transition-colors duration-500 ${
-        dark
-          ? "bg-[#050505] text-white"
-          : "bg-[#f5f5f5] text-black"
+      className={`relative min-h-screen overflow-x-hidden transition-colors duration-500 ${
+        dark ? "bg-[#050505] text-white" : "bg-[#f5f5f5] text-black"
       }`}
     >
-      {/* NAVBAR */}
-      <nav
-        className={`fixed left-0 right-0 top-0 z-50 border-b backdrop-blur-xl transition-colors duration-500 ${
-          dark
-            ? "border-white/10 bg-black/70"
-            : "border-black/10 bg-white/80"
-        }`}
-      >
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
-          <button
-            onClick={() => scrollToSection("home")}
-            className="text-xl font-bold tracking-tight"
-          >
-            K<span className="text-violet-500">.</span>
-          </button>
+      {/* =====================================================
+          ACTUAL MOVING BACKGROUND
+      ====================================================== */}
 
-          <div className="hidden items-center gap-8 md:flex">
-            {[
-              "about",
-              "skills",
-              "projects",
-              "education",
-              "certifications",
-              "contact",
-            ].map((item) => (
-              <button
-                key={item}
-                onClick={() => scrollToSection(item)}
-                className={`text-sm capitalize transition ${
-                  dark
-                    ? "text-gray-300 hover:text-white"
-                    : "text-gray-600 hover:text-black"
-                }`}
-              >
-                {item}
-              </button>
-            ))}
+      <MovingBackground dark={dark} />
 
-            {/* THEME TOGGLE */}
+      {/* Everything below stays above the background */}
+      <div className="relative z-10">
+        {/* =====================================================
+            NAVBAR
+        ====================================================== */}
+
+        <nav
+          className={`fixed left-0 right-0 top-0 z-50 border-b backdrop-blur-xl transition-colors duration-500 ${
+            dark
+              ? "border-white/10 bg-black/70"
+              : "border-black/10 bg-white/80"
+          }`}
+        >
+          <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
             <button
-              onClick={() => setLightMode(!lightMode)}
-              className={`flex items-center gap-2 rounded-full border px-4 py-2 text-sm transition ${
-                dark
-                  ? "border-white/20 hover:border-white/40"
-                  : "border-black/20 hover:border-black/40"
-              }`}
-              aria-label="Toggle theme"
+              onClick={() => scrollToSection("home")}
+              className="text-xl font-bold tracking-tight"
             >
-              {dark ? <Sun size={16} /> : <Moon size={16} />}
-              {dark ? "Light" : "Dark"}
+              K<span className="text-violet-500">.</span>
+            </button>
+
+            <div className="hidden items-center gap-8 md:flex">
+              {[
+                "about",
+                "skills",
+                "projects",
+                "education",
+                "certifications",
+                "contact",
+              ].map((item) => (
+                <button
+                  key={item}
+                  onClick={() => scrollToSection(item)}
+                  className={`text-sm capitalize transition ${
+                    dark
+                      ? "text-gray-300 hover:text-white"
+                      : "text-gray-600 hover:text-black"
+                  }`}
+                >
+                  {item}
+                </button>
+              ))}
+
+              <button
+                onClick={() => setLightMode(!lightMode)}
+                className={`flex items-center gap-2 rounded-full border px-4 py-2 text-sm transition ${
+                  dark
+                    ? "border-white/20 hover:border-white/40"
+                    : "border-black/20 hover:border-black/40"
+                }`}
+                aria-label="Toggle theme"
+              >
+                {dark ? <Sun size={16} /> : <Moon size={16} />}
+                {dark ? "Light" : "Dark"}
+              </button>
+            </div>
+
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="md:hidden"
+              aria-label="Toggle menu"
+            >
+              {menuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
 
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden"
-            aria-label="Toggle menu"
-          >
-            {menuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-
-        <AnimatePresence>
-          {menuOpen && (
-            <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              className={`overflow-hidden border-t px-6 py-5 md:hidden ${
-                dark
-                  ? "border-white/10 bg-black/95"
-                  : "border-black/10 bg-white/95"
-              }`}
-            >
-              <div className="flex flex-col gap-5">
-                {[
-                  "about",
-                  "skills",
-                  "projects",
-                  "education",
-                  "certifications",
-                  "contact",
-                ].map((item) => (
-                  <button
-                    key={item}
-                    onClick={() => scrollToSection(item)}
-                    className={`text-left capitalize ${
-                      dark
-                        ? "text-gray-300 hover:text-white"
-                        : "text-gray-600 hover:text-black"
-                    }`}
-                  >
-                    {item}
-                  </button>
-                ))}
-
-                <button
-                  onClick={() => setLightMode(!lightMode)}
-                  className="flex items-center gap-2 text-left"
-                >
-                  {dark ? <Sun size={17} /> : <Moon size={17} />}
-                  {dark ? "Light Mode" : "Black Mode"}
-                </button>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </nav>
-
-      {/* HERO */}
-      <section
-        id="home"
-        className="relative flex min-h-screen items-center px-6 pt-24 lg:px-10"
-      >
-        {/* Background glow kept subtle */}
-        {dark && (
-          <>
-            <div className="absolute left-1/4 top-1/4 h-72 w-72 rounded-full bg-violet-600/10 blur-[130px]" />
-            <div className="absolute bottom-10 right-1/4 h-72 w-72 rounded-full bg-blue-600/5 blur-[130px]" />
-          </>
-        )}
-
-        <div className="relative mx-auto grid w-full max-w-7xl items-center gap-14 lg:grid-cols-[1.2fr_0.8fr]">
-          <motion.div
-            initial={{ opacity: 0, y: 35 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <motion.p
-              initial={{ opacity: 0, letterSpacing: "0.1em" }}
-              animate={{ opacity: 1, letterSpacing: "0.3em" }}
-              transition={{ duration: 1 }}
-              className="mb-5 text-sm font-medium uppercase text-violet-500"
-            >
-              B.Tech CSE Student • Java & Python Developer
-            </motion.p>
-
-            <h1 className="max-w-4xl text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl lg:text-8xl">
-              Kamlesh
-              <br />
-
-              {/* More visible Kumar Sahu */}
-              <span
-                className={
-                  dark
-                    ? "bg-gradient-to-r from-violet-300 via-violet-500 to-purple-600 bg-clip-text text-transparent"
-                    : "text-black"
-                }
-              >
-                Kumar Sahu
-              </span>
-            </h1>
-
-            <p
-              className={`mt-7 max-w-2xl text-base leading-7 sm:text-lg ${
-                dark ? "text-gray-400" : "text-gray-600"
-              }`}
-            >
-              Computer Science Engineering student passionate about building
-              modern applications, solving problems, and exploring networking,
-              artificial intelligence, web development, and software
-              engineering.
-            </p>
-
-            <div className="mt-9 flex flex-wrap gap-4">
-              <button
-                onClick={() => scrollToSection("projects")}
-                className="group flex items-center gap-2 rounded-full bg-violet-600 px-6 py-3 font-medium text-white transition duration-300 hover:-translate-y-1 hover:bg-violet-500"
-              >
-                View My Work
-                <ArrowUpRight
-                  size={18}
-                  className="transition group-hover:translate-x-1 group-hover:-translate-y-1"
-                />
-              </button>
-
-              <a
-                href="/resume.pdf"
-                download="Kamlesh_Kumar_Sahu_Resume.pdf"
-                className={`flex items-center gap-2 rounded-full border px-6 py-3 font-medium transition duration-300 hover:-translate-y-1 ${
-                  dark
-                    ? "border-white/15 text-white hover:border-violet-400 hover:bg-white/5"
-                    : "border-black/15 text-black hover:border-violet-500 hover:bg-black/5"
-                }`}
-              >
-                <Download size={18} />
-                Download Resume
-              </a>
-            </div>
-
-            <div className="mt-8 flex items-center gap-5">
-              <a
-                href="https://github.com/KamleshSahu874"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`transition hover:text-violet-500 ${
-                  dark ? "text-gray-400" : "text-gray-600"
-                }`}
-                aria-label="GitHub"
-              >
-                <FaGithub size={23} />
-              </a>
-
-              <a
-                href="https://www.linkedin.com/in/kamlesh-kumar-sahu-9b361a309/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`transition hover:text-violet-500 ${
-                  dark ? "text-gray-400" : "text-gray-600"
-                }`}
-                aria-label="LinkedIn"
-              >
-                <FaLinkedinIn size={22} />
-              </a>
-
-              <a
-                href="mailto:sahukamleshkumar404@gmail.com"
-                className={`transition hover:text-violet-500 ${
-                  dark ? "text-gray-400" : "text-gray-600"
-                }`}
-                aria-label="Email"
-              >
-                <Mail size={22} />
-              </a>
-
-              <a
-                href="tel:+917869676237"
-                className={`transition hover:text-violet-500 ${
-                  dark ? "text-gray-400" : "text-gray-600"
-                }`}
-                aria-label="Phone"
-              >
-                <Phone size={22} />
-              </a>
-            </div>
-          </motion.div>
-
-          {/* PROFILE IMAGE */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.9 }}
-            className="mx-auto w-full max-w-md"
-          >
-            <motion.div
-              whileHover={{ y: -8 }}
-              transition={{ duration: 0.3 }}
-              className={`relative aspect-[4/5] overflow-hidden rounded-[2rem] border p-2 shadow-2xl ${
-                dark
-                  ? "border-white/10 bg-white/5 shadow-violet-900/10"
-                  : "border-black/10 bg-black/5 shadow-black/10"
-              }`}
-            >
-              {/* No purple overlay on image */}
-              <img
-                src="/profile.jpeg"
-                alt="Kamlesh Kumar Sahu"
-                className="h-full w-full rounded-[1.5rem] object-cover object-top transition duration-700 hover:scale-[1.02]"
-                style={{
-                  filter: "saturate(0.88) contrast(1.02)",
-                }}
-              />
-            </motion.div>
-          </motion.div>
-        </div>
-
-        <button
-          onClick={() => scrollToSection("about")}
-          className={`absolute bottom-8 left-1/2 hidden -translate-x-1/2 transition md:block ${
-            dark
-              ? "text-gray-500 hover:text-white"
-              : "text-gray-500 hover:text-black"
-          }`}
-          aria-label="Scroll down"
-        >
-          <ArrowDown className="animate-bounce" />
-        </button>
-      </section>
-
-      {/* ABOUT */}
-      <section
-        id="about"
-        className={`border-t px-6 py-24 lg:px-10 ${
-          dark ? "border-white/10" : "border-black/10"
-        }`}
-      >
-        <div className="mx-auto max-w-7xl">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr]"
-          >
-            <div>
-              <p className="text-sm uppercase tracking-[0.3em] text-violet-500">
-                About Me
-              </p>
-
-              <h2 className="mt-4 text-4xl font-bold sm:text-5xl">
-                Building with
-                <br />
-                <span className={dark ? "text-gray-500" : "text-gray-400"}>
-                  purpose.
-                </span>
-              </h2>
-            </div>
-
-            <div>
-              <p
-                className={`text-lg leading-8 ${
-                  dark ? "text-gray-300" : "text-gray-700"
-                }`}
-              >
-                I am a Computer Science Engineering student at Baderia Global
-                Institute of Engineering and Management, Jabalpur, affiliated
-                with Rajiv Gandhi Proudyogiki Vishwavidyalaya (RGPV), Bhopal.
-              </p>
-
-              <p
-                className={`mt-6 leading-7 ${
-                  dark ? "text-gray-400" : "text-gray-600"
-                }`}
-              >
-                I enjoy developing software applications and working with
-                technologies such as Java, Python, React.js, Next.js, Node.js,
-                MongoDB, and networking tools. I am continuously improving my
-                technical skills through projects, problem solving, and
-                hands-on learning.
-              </p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* SKILLS */}
-      <section id="skills" className="px-6 py-24 lg:px-10">
-        <div className="mx-auto max-w-7xl">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <p className="text-sm uppercase tracking-[0.3em] text-violet-500">
-              Skills
-            </p>
-
-            <h2 className="mt-4 text-4xl font-bold sm:text-5xl">
-              My technical toolkit
-            </h2>
-          </motion.div>
-
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {skills.map((skill, index) => (
+          <AnimatePresence>
+            {menuOpen && (
               <motion.div
-                key={skill.title}
-                initial={{ opacity: 0, y: 25 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.08 }}
-                whileHover={{ y: -6 }}
-                className={`rounded-2xl border p-7 backdrop-blur-xl transition ${
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                className={`overflow-hidden border-t px-6 py-5 md:hidden ${
                   dark
-                    ? "border-white/10 bg-white/[0.03] hover:border-violet-400/30"
-                    : "border-black/10 bg-black/[0.03] hover:border-violet-500/30"
+                    ? "border-white/10 bg-black/95"
+                    : "border-black/10 bg-white/95"
                 }`}
               >
-                <h3 className="text-xl font-semibold">{skill.title}</h3>
-
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {skill.items.map((item) => (
-                    <span
+                <div className="flex flex-col gap-5">
+                  {[
+                    "about",
+                    "skills",
+                    "projects",
+                    "education",
+                    "certifications",
+                    "contact",
+                  ].map((item) => (
+                    <button
                       key={item}
-                      className={`rounded-full border px-3 py-1.5 text-sm ${
+                      onClick={() => scrollToSection(item)}
+                      className={`text-left capitalize ${
                         dark
-                          ? "border-white/10 bg-white/5 text-gray-300"
-                          : "border-black/10 bg-black/5 text-gray-700"
+                          ? "text-gray-300 hover:text-white"
+                          : "text-gray-600 hover:text-black"
                       }`}
                     >
                       {item}
-                    </span>
+                    </button>
                   ))}
+
+                  <button
+                    onClick={() => setLightMode(!lightMode)}
+                    className="flex items-center gap-2 text-left"
+                  >
+                    {dark ? <Sun size={17} /> : <Moon size={17} />}
+                    {dark ? "Light Mode" : "Black Mode"}
+                  </button>
                 </div>
               </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+            )}
+          </AnimatePresence>
+        </nav>
 
-      {/* PROJECTS */}
-      <section
-        id="projects"
-        className={`border-t px-6 py-24 lg:px-10 ${
-          dark ? "border-white/10" : "border-black/10"
-        }`}
-      >
-        <div className="mx-auto max-w-7xl">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <p className="text-sm uppercase tracking-[0.3em] text-violet-500">
-              Selected Work
-            </p>
+        {/* =====================================================
+            HERO
+        ====================================================== */}
 
-            <h2 className="mt-4 text-4xl font-bold sm:text-5xl">
-              Projects I&apos;ve built
-            </h2>
-          </motion.div>
-
-          {/* Large project cards */}
-          <div className="mt-12 grid gap-7 lg:grid-cols-3">
-            {projects.map((project, index) => (
-              <motion.div
-                key={project.number}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{
-                  delay: index * 0.12,
-                  duration: 0.6,
-                }}
-                whileHover={{ y: -10 }}
-                className={`group flex min-h-[500px] flex-col overflow-hidden rounded-3xl border backdrop-blur-xl transition duration-500 ${
-                  dark
-                    ? "border-white/10 bg-white/[0.03] hover:border-violet-400/30"
-                    : "border-black/10 bg-black/[0.03] hover:border-violet-500/30"
-                }`}
-              >
-                <div
-                  className={`relative flex h-56 items-center justify-center overflow-hidden border-b ${
-                    dark
-                      ? "border-white/10 bg-white/[0.02]"
-                      : "border-black/10 bg-black/[0.02]"
-                  }`}
-                >
-                  <span
-                    className={`absolute left-6 top-5 text-xs font-medium tracking-[0.2em] ${
-                      dark ? "text-gray-500" : "text-gray-400"
-                    }`}
-                  >
-                    PROJECT {project.number}
-                  </span>
-
-                  <motion.span
-                    whileHover={{ scale: 1.2, rotate: 4 }}
-                    className="text-7xl"
-                  >
-                    {project.icon}
-                  </motion.span>
-                </div>
-
-                <div className="flex flex-1 flex-col p-8">
-                  <p className="text-sm text-violet-500">
-                    {project.category}
-                  </p>
-
-                  <h3 className="mt-2 text-2xl font-bold">
-                    {project.title}
-                  </h3>
-
-                  <p
-                    className={`mt-4 flex-1 text-sm leading-7 ${
-                      dark ? "text-gray-400" : "text-gray-600"
-                    }`}
-                  >
-                    {project.description}
-                  </p>
-
-                  <div className="mt-6 flex flex-wrap gap-2">
-                    {project.tech.map((item) => (
-                      <span
-                        key={item}
-                        className={`rounded-full px-3 py-1.5 text-xs ${
-                          dark
-                            ? "bg-white/5 text-gray-300"
-                            : "bg-black/5 text-gray-700"
-                        }`}
-                      >
-                        {item}
-                      </span>
-                    ))}
-                  </div>
-
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-8 flex items-center gap-2 text-sm font-medium transition hover:text-violet-500"
-                  >
-                    <FaGithub size={18} />
-                    View on GitHub
-                    <ArrowUpRight size={16} />
-                  </a>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* EDUCATION */}
-      <section id="education" className="px-6 py-24 lg:px-10">
-        <div className="mx-auto max-w-7xl">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <p className="text-sm uppercase tracking-[0.3em] text-violet-500">
-              Education
-            </p>
-
-            <h2 className="mt-4 text-4xl font-bold sm:text-5xl">
-              Academic journey
-            </h2>
-          </motion.div>
-
-          <div
-            className={`relative mt-14 border-l pl-8 ${
-              dark ? "border-white/10" : "border-black/10"
-            }`}
-          >
+        <section
+          id="home"
+          className="relative flex min-h-screen items-center px-6 pt-24 lg:px-10"
+        >
+          <div className="relative mx-auto grid w-full max-w-7xl items-center gap-14 lg:grid-cols-[1.2fr_0.8fr]">
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="relative"
+              initial={{ opacity: 0, y: 35 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
             >
-              <div
-                className={`absolute -left-[43px] top-1 flex h-7 w-7 items-center justify-center rounded-full border ${
-                  dark
-                    ? "border-violet-400/40 bg-[#050505]"
-                    : "border-violet-400/40 bg-[#f5f5f5]"
-                }`}
+              <motion.p
+                initial={{ opacity: 0, letterSpacing: "0.1em" }}
+                animate={{ opacity: 1, letterSpacing: "0.3em" }}
+                transition={{ duration: 1 }}
+                className="mb-5 text-sm font-medium uppercase text-violet-500"
               >
-                <GraduationCap size={15} className="text-violet-500" />
-              </div>
+                B.Tech CSE Student • Java & Python Developer
+              </motion.p>
 
-              <p className="text-sm text-violet-500">2023 – Present</p>
-
-              <h3 className="mt-2 text-2xl font-bold">
-                Bachelor of Technology in Computer Science and Engineering
-              </h3>
-
-              <p
-                className={`mt-2 ${
-                  dark ? "text-gray-300" : "text-gray-700"
-                }`}
-              >
-                Baderia Global Institute of Engineering and Management,
-                Jabalpur (M.P.)
-              </p>
-
-              <p
-                className={`mt-2 text-sm ${
-                  dark ? "text-gray-500" : "text-gray-500"
-                }`}
-              >
-                Rajiv Gandhi Proudyogiki Vishwavidyalaya (RGPV), Bhopal
-              </p>
-
-              <p
-                className={`mt-4 inline-block rounded-full px-4 py-2 text-sm ${
-                  dark
-                    ? "bg-white/5 text-gray-300"
-                    : "bg-black/5 text-gray-700"
-                }`}
-              >
-                CGPA: 7.88
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="relative mt-16"
-            >
-              <div
-                className={`absolute -left-[43px] top-1 flex h-7 w-7 items-center justify-center rounded-full border ${
-                  dark
-                    ? "border-white/20 bg-[#050505]"
-                    : "border-black/20 bg-[#f5f5f5]"
-                }`}
-              >
-                <Award size={15} className="text-gray-500" />
-              </div>
-
-              <p className="text-sm text-gray-500">2022 – 2023</p>
-
-              <h3 className="mt-2 text-2xl font-bold">
-                Higher Secondary Certification
-              </h3>
-
-              <p className="mt-2 text-gray-500">Central Academy School</p>
-
-              <p className="mt-3 text-gray-500">MP Board • 87%</p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="relative mt-16"
-            >
-              <div
-                className={`absolute -left-[43px] top-1 flex h-7 w-7 items-center justify-center rounded-full border ${
-                  dark
-                    ? "border-white/20 bg-[#050505]"
-                    : "border-black/20 bg-[#f5f5f5]"
-                }`}
-              >
-                <Award size={15} className="text-gray-500" />
-              </div>
-
-              <p className="text-sm text-gray-500">2020 – 2021</p>
-
-              <h3 className="mt-2 text-2xl font-bold">
-                Secondary School Certification
-              </h3>
-
-              <p className="mt-2 text-gray-500">Spring Dales School</p>
-
-              <p className="mt-3 text-gray-500">MP Board • 85.4%</p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* CERTIFICATIONS */}
-      <section
-        id="certifications"
-        className={`border-t px-6 py-24 lg:px-10 ${
-          dark ? "border-white/10" : "border-black/10"
-        }`}
-      >
-        <div className="mx-auto max-w-7xl">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <p className="text-sm uppercase tracking-[0.3em] text-violet-500">
-              Certifications & Training
-            </p>
-
-            <h2 className="mt-4 text-4xl font-bold sm:text-5xl">
-              Learning beyond academics
-            </h2>
-
-            <p
-              className={`mt-5 max-w-2xl leading-7 ${
-                dark ? "text-gray-400" : "text-gray-600"
-              }`}
-            >
-              Certifications, training programs, and achievements that
-              complement my academic and technical experience.
-            </p>
-          </motion.div>
-
-          <div className="mt-12 grid gap-5 md:grid-cols-2">
-            {certifications.map((cert, index) => (
-              <motion.div
-                key={cert.number}
-                initial={{ opacity: 0, y: 25 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.08 }}
-                whileHover={{ y: -5 }}
-                className={`rounded-2xl border p-6 backdrop-blur-xl transition ${
-                  dark
-                    ? "border-white/10 bg-white/[0.03] hover:border-violet-400/30"
-                    : "border-black/10 bg-black/[0.03] hover:border-violet-500/30"
-                }`}
-              >
-                <div className="flex items-start justify-between gap-5">
-                  <div className="flex items-start gap-4">
-                    <div
-                      className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-2xl ${
-                        dark ? "bg-white/5" : "bg-black/5"
-                      }`}
-                    >
-                      {cert.icon}
-                    </div>
-
-                    <div>
-                      <p className="text-xs tracking-[0.2em] text-gray-500">
-                        CERTIFICATE {cert.number}
-                      </p>
-
-                      <h3 className="mt-1 text-lg font-semibold leading-6">
-                        {cert.title}
-                      </h3>
-
-                      <p className="mt-2 text-sm text-violet-500">
-                        {cert.issuer}
-                      </p>
-                    </div>
-                  </div>
-
-                  <span
-                    className={`shrink-0 rounded-full px-3 py-1 text-xs ${
-                      dark
-                        ? "bg-white/5 text-gray-400"
-                        : "bg-black/5 text-gray-500"
-                    }`}
-                  >
-                    {cert.date}
-                  </span>
-                </div>
-
-                <div
-                  className={`mt-5 flex items-center justify-between border-t pt-5 ${
-                    dark ? "border-white/10" : "border-black/10"
-                  }`}
-                >
-                  <span className="text-sm text-gray-500">
-                    {cert.type}
-                  </span>
-
-                  <a
-                    href={cert.certificate}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-sm font-medium transition hover:text-violet-500"
-                  >
-                    <FileText size={16} />
-                    View Certificate
-                    <ExternalLink size={15} />
-                  </a>
-                </div>
-
-                {cert.details && (
-                  <p
-                    className={`mt-4 border-t pt-4 text-sm leading-6 ${
-                      dark
-                        ? "border-white/5 text-gray-500"
-                        : "border-black/5 text-gray-500"
-                    }`}
-                  >
-                    {cert.details}
-                  </p>
-                )}
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CONTACT */}
-      <section
-        id="contact"
-        className={`border-t px-6 py-24 lg:px-10 ${
-          dark ? "border-white/10" : "border-black/10"
-        }`}
-      >
-        <div className="mx-auto max-w-7xl">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="grid gap-12 lg:grid-cols-2"
-          >
-            <div>
-              <p className="text-sm uppercase tracking-[0.3em] text-violet-500">
-                Contact
-              </p>
-
-              <h2 className="mt-4 text-5xl font-bold leading-tight sm:text-6xl">
-                Let&apos;s build
+              <h1 className="max-w-4xl text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl lg:text-8xl">
+                Kamlesh
                 <br />
-                something.
-              </h2>
+
+                <span
+                  className={
+                    dark
+                      ? "bg-gradient-to-r from-violet-300 via-violet-500 to-purple-600 bg-clip-text text-transparent"
+                      : "text-black"
+                  }
+                >
+                  Kumar Sahu
+                </span>
+              </h1>
 
               <p
-                className={`mt-6 max-w-lg leading-7 ${
+                className={`mt-7 max-w-2xl text-base leading-7 sm:text-lg ${
                   dark ? "text-gray-400" : "text-gray-600"
                 }`}
               >
-                I&apos;m open to opportunities, internships, collaborations,
-                and interesting software development projects.
+                Computer Science Engineering student passionate about building
+                modern applications, solving problems, and exploring networking,
+                artificial intelligence, web development, and software
+                engineering.
               </p>
-            </div>
 
-            <div className="space-y-4">
-              {/* EMAIL */}
-              <div
-                className={`flex items-center gap-4 rounded-2xl border p-5 transition hover:-translate-y-1 ${
-                  dark
-                    ? "border-white/10 bg-white/[0.03]"
-                    : "border-black/10 bg-black/[0.03]"
-                }`}
-              >
-                <Mail className="text-violet-500" />
-
-                <div>
-                  <p className="text-xs uppercase tracking-wider text-gray-500">
-                    Email
-                  </p>
-
-                  <a
-                    href="mailto:sahukamleshkumar404@gmail.com"
-                    className="mt-1 block text-sm transition hover:text-violet-500"
-                  >
-                    sahukamleshkumar404@gmail.com
-                  </a>
-                </div>
-              </div>
-
-              {/* PHONE */}
-              <div
-                className={`flex items-center gap-4 rounded-2xl border p-5 transition hover:-translate-y-1 ${
-                  dark
-                    ? "border-white/10 bg-white/[0.03]"
-                    : "border-black/10 bg-black/[0.03]"
-                }`}
-              >
-                <Phone className="text-violet-500" />
-
-                <div>
-                  <p className="text-xs uppercase tracking-wider text-gray-500">
-                    Phone
-                  </p>
-
-                  <a
-                    href="tel:+917869676237"
-                    className="mt-1 block text-sm transition hover:text-violet-500"
-                  >
-                    +91 7869676237
-                  </a>
-                </div>
-              </div>
-
-              {/* LOCATION */}
-              <div
-                className={`flex items-center gap-4 rounded-2xl border p-5 transition hover:-translate-y-1 ${
-                  dark
-                    ? "border-white/10 bg-white/[0.03]"
-                    : "border-black/10 bg-black/[0.03]"
-                }`}
-              >
-                <MapPin className="text-violet-500" />
-
-                <div>
-                  <p className="text-xs uppercase tracking-wider text-gray-500">
-                    Location
-                  </p>
-
-                  <p className="mt-1 text-sm">
-                    Madhya Pradesh, India
-                  </p>
-                </div>
-              </div>
-
-              {/* BUTTONS */}
-              <div className="flex flex-wrap gap-3 pt-3">
-                <a
-                  href="mailto:sahukamleshkumar404@gmail.com"
-                  className="flex items-center gap-2 rounded-full bg-violet-600 px-5 py-3 text-sm font-medium text-white transition hover:-translate-y-1 hover:bg-violet-500"
+              <div className="mt-9 flex flex-wrap gap-4">
+                <button
+                  onClick={() => scrollToSection("projects")}
+                  className="group flex items-center gap-2 rounded-full bg-violet-600 px-6 py-3 font-medium text-white transition duration-300 hover:-translate-y-1 hover:bg-violet-500"
                 >
-                  <Mail size={17} />
-                  Email Me
-                </a>
+                  View My Work
+                  <ArrowUpRight
+                    size={18}
+                    className="transition group-hover:translate-x-1 group-hover:-translate-y-1"
+                  />
+                </button>
 
                 <a
-                  href="tel:+917869676237"
-                  className={`flex items-center gap-2 rounded-full border px-5 py-3 text-sm font-medium transition hover:-translate-y-1 ${
+                  href="/resume.pdf"
+                  download="Kamlesh_Kumar_Sahu_Resume.pdf"
+                  className={`flex items-center gap-2 rounded-full border px-6 py-3 font-medium transition duration-300 hover:-translate-y-1 ${
                     dark
-                      ? "border-white/15 hover:border-violet-400"
-                      : "border-black/15 hover:border-violet-500"
+                      ? "border-white/15 text-white hover:border-violet-400 hover:bg-white/5"
+                      : "border-black/15 text-black hover:border-violet-500 hover:bg-black/5"
                   }`}
                 >
-                  <Phone size={17} />
-                  Call Me
+                  <Download size={18} />
+                  Download Resume
+                </a>
+              </div>
+
+              <div className="mt-8 flex items-center gap-5">
+                <a
+                  href="https://github.com/KamleshSahu874"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`transition hover:text-violet-500 ${
+                    dark ? "text-gray-400" : "text-gray-600"
+                  }`}
+                  aria-label="GitHub"
+                >
+                  <FaGithub size={23} />
                 </a>
 
                 <a
                   href="https://www.linkedin.com/in/kamlesh-kumar-sahu-9b361a309/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`flex items-center gap-2 rounded-full border px-5 py-3 text-sm font-medium transition hover:-translate-y-1 ${
-                    dark
-                      ? "border-white/15 hover:border-violet-400"
-                      : "border-black/15 hover:border-violet-500"
+                  className={`transition hover:text-violet-500 ${
+                    dark ? "text-gray-400" : "text-gray-600"
                   }`}
+                  aria-label="LinkedIn"
                 >
-                  <FaLinkedinIn size={17} />
-                  LinkedIn
+                  <FaLinkedinIn size={22} />
                 </a>
 
                 <a
-                  href="https://github.com/KamleshSahu874"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`flex items-center gap-2 rounded-full border px-5 py-3 text-sm font-medium transition hover:-translate-y-1 ${
-                    dark
-                      ? "border-white/15 hover:border-violet-400"
-                      : "border-black/15 hover:border-violet-500"
+                  href="mailto:sahukamleshkumar404@gmail.com"
+                  className={`transition hover:text-violet-500 ${
+                    dark ? "text-gray-400" : "text-gray-600"
                   }`}
+                  aria-label="Email"
                 >
-                  <FaGithub size={17} />
-                  GitHub
+                  <Mail size={22} />
                 </a>
 
                 <a
-                  href="/resume.pdf"
-                  download="Kamlesh_Kumar_Sahu_Resume.pdf"
-                  className={`flex items-center gap-2 rounded-full border px-5 py-3 text-sm font-medium transition hover:-translate-y-1 ${
-                    dark
-                      ? "border-white/15 hover:border-violet-400"
-                      : "border-black/15 hover:border-violet-500"
+                  href="tel:+917869676237"
+                  className={`transition hover:text-violet-500 ${
+                    dark ? "text-gray-400" : "text-gray-600"
                   }`}
+                  aria-label="Phone"
                 >
-                  <Download size={17} />
-                  Resume
+                  <Phone size={22} />
                 </a>
               </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+            </motion.div>
 
-      {/* FOOTER */}
-      <footer
-        className={`border-t px-6 py-8 lg:px-10 ${
-          dark ? "border-white/10" : "border-black/10"
-        }`}
-      >
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-5 sm:flex-row">
-          <p className="text-sm text-gray-500">
-            © {new Date().getFullYear()} Kamlesh Kumar Sahu. All rights
-            reserved.
-          </p>
+            {/* PROFILE IMAGE */}
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.9 }}
+              className="mx-auto w-full max-w-md"
+            >
+              <motion.div
+                whileHover={{ y: -8 }}
+                transition={{ duration: 0.3 }}
+                className={`relative aspect-[4/5] overflow-hidden rounded-[2rem] border p-2 shadow-2xl ${
+                  dark
+                    ? "border-white/10 bg-white/5 shadow-violet-900/10"
+                    : "border-black/10 bg-black/5 shadow-black/10"
+                }`}
+              >
+                <img
+                  src="/profile.jpeg"
+                  alt="Kamlesh Kumar Sahu"
+                  className="h-full w-full rounded-[1.5rem] object-cover object-top transition duration-700 hover:scale-[1.02]"
+                  style={{
+                    filter: "saturate(0.88) contrast(1.02)",
+                  }}
+                />
+              </motion.div>
+            </motion.div>
+          </div>
 
           <button
-            onClick={() => scrollToSection("home")}
-            className="flex items-center gap-2 text-sm text-gray-500 transition hover:text-violet-500"
+            onClick={() => scrollToSection("about")}
+            className={`absolute bottom-8 left-1/2 hidden -translate-x-1/2 transition md:block ${
+              dark
+                ? "text-gray-500 hover:text-white"
+                : "text-gray-500 hover:text-black"
+            }`}
+            aria-label="Scroll down"
           >
-            Back to top
-            <ArrowUp size={16} />
+            <ArrowDown className="animate-bounce" />
           </button>
-        </div>
-      </footer>
+        </section>
+
+        {/* =====================================================
+            ABOUT
+        ====================================================== */}
+
+        <section
+          id="about"
+          className={`border-t px-6 py-24 lg:px-10 ${
+            dark ? "border-white/10" : "border-black/10"
+          }`}
+        >
+          <div className="mx-auto max-w-7xl">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr]"
+            >
+              <div>
+                <p className="text-sm uppercase tracking-[0.3em] text-violet-500">
+                  About Me
+                </p>
+
+                <h2 className="mt-4 text-4xl font-bold sm:text-5xl">
+                  Building with
+                  <br />
+                  <span className={dark ? "text-gray-500" : "text-gray-400"}>
+                    purpose.
+                  </span>
+                </h2>
+              </div>
+
+              <div>
+                <p
+                  className={`text-lg leading-8 ${
+                    dark ? "text-gray-300" : "text-gray-700"
+                  }`}
+                >
+                  I am a Computer Science Engineering student at Baderia Global
+                  Institute of Engineering and Management, Jabalpur, affiliated
+                  with Rajiv Gandhi Proudyogiki Vishwavidyalaya (RGPV), Bhopal.
+                </p>
+
+                <p
+                  className={`mt-6 leading-7 ${
+                    dark ? "text-gray-400" : "text-gray-600"
+                  }`}
+                >
+                  I enjoy developing software applications and working with
+                  technologies such as Java, Python, React.js, Next.js, Node.js,
+                  MongoDB, and networking tools. I am continuously improving my
+                  technical skills through projects, problem solving, and
+                  hands-on learning.
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            SKILLS
+        ====================================================== */}
+
+        <section id="skills" className="px-6 py-24 lg:px-10">
+          <div className="mx-auto max-w-7xl">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <p className="text-sm uppercase tracking-[0.3em] text-violet-500">
+                Skills
+              </p>
+
+              <h2 className="mt-4 text-4xl font-bold sm:text-5xl">
+                My technical toolkit
+              </h2>
+            </motion.div>
+
+            <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {skills.map((skill, index) => (
+                <motion.div
+                  key={skill.title}
+                  initial={{ opacity: 0, y: 25 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.08 }}
+                  whileHover={{ y: -6 }}
+                  className={`rounded-2xl border p-7 backdrop-blur-xl transition ${
+                    dark
+                      ? "border-white/10 bg-white/[0.03] hover:border-violet-400/30"
+                      : "border-black/10 bg-black/[0.03] hover:border-violet-500/30"
+                  }`}
+                >
+                  <h3 className="text-xl font-semibold">{skill.title}</h3>
+
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {skill.items.map((item) => (
+                      <span
+                        key={item}
+                        className={`rounded-full border px-3 py-1.5 text-sm ${
+                          dark
+                            ? "border-white/10 bg-white/5 text-gray-300"
+                            : "border-black/10 bg-black/5 text-gray-700"
+                        }`}
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            PROJECTS
+        ====================================================== */}
+
+        <section
+          id="projects"
+          className={`border-t px-6 py-24 lg:px-10 ${
+            dark ? "border-white/10" : "border-black/10"
+          }`}
+        >
+          <div className="mx-auto max-w-7xl">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <p className="text-sm uppercase tracking-[0.3em] text-violet-500">
+                Selected Work
+              </p>
+
+              <h2 className="mt-4 text-4xl font-bold sm:text-5xl">
+                Projects I&apos;ve built
+              </h2>
+            </motion.div>
+
+            <div className="mt-12 grid gap-7 lg:grid-cols-3">
+              {projects.map((project, index) => (
+                <motion.div
+                  key={project.number}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    delay: index * 0.12,
+                    duration: 0.6,
+                  }}
+                  whileHover={{ y: -10 }}
+                  className={`group flex min-h-[500px] flex-col overflow-hidden rounded-3xl border backdrop-blur-xl transition duration-500 ${
+                    dark
+                      ? "border-white/10 bg-white/[0.03] hover:border-violet-400/30"
+                      : "border-black/10 bg-black/[0.03] hover:border-violet-500/30"
+                  }`}
+                >
+                  <div
+                    className={`relative flex h-56 items-center justify-center overflow-hidden border-b ${
+                      dark
+                        ? "border-white/10 bg-white/[0.02]"
+                        : "border-black/10 bg-black/[0.02]"
+                    }`}
+                  >
+                    <span
+                      className={`absolute left-6 top-5 text-xs font-medium tracking-[0.2em] ${
+                        dark ? "text-gray-500" : "text-gray-400"
+                      }`}
+                    >
+                      PROJECT {project.number}
+                    </span>
+
+                    <motion.span
+                      whileHover={{ scale: 1.2, rotate: 4 }}
+                      className="text-7xl"
+                    >
+                      {project.icon}
+                    </motion.span>
+                  </div>
+
+                  <div className="flex flex-1 flex-col p-8">
+                    <p className="text-sm text-violet-500">
+                      {project.category}
+                    </p>
+
+                    <h3 className="mt-2 text-2xl font-bold">
+                      {project.title}
+                    </h3>
+
+                    <p
+                      className={`mt-4 flex-1 text-sm leading-7 ${
+                        dark ? "text-gray-400" : "text-gray-600"
+                      }`}
+                    >
+                      {project.description}
+                    </p>
+
+                    <div className="mt-6 flex flex-wrap gap-2">
+                      {project.tech.map((item) => (
+                        <span
+                          key={item}
+                          className={`rounded-full px-3 py-1.5 text-xs ${
+                            dark
+                              ? "bg-white/5 text-gray-300"
+                              : "bg-black/5 text-gray-700"
+                          }`}
+                        >
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-8 flex items-center gap-2 text-sm font-medium transition hover:text-violet-500"
+                    >
+                      <FaGithub size={18} />
+                      View on GitHub
+                      <ArrowUpRight size={16} />
+                    </a>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            EDUCATION
+        ====================================================== */}
+
+        <section id="education" className="px-6 py-24 lg:px-10">
+          <div className="mx-auto max-w-7xl">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <p className="text-sm uppercase tracking-[0.3em] text-violet-500">
+                Education
+              </p>
+
+              <h2 className="mt-4 text-4xl font-bold sm:text-5xl">
+                Academic journey
+              </h2>
+            </motion.div>
+
+            <div
+              className={`relative mt-14 border-l pl-8 ${
+                dark ? "border-white/10" : "border-black/10"
+              }`}
+            >
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="relative"
+              >
+                <div
+                  className={`absolute -left-[43px] top-1 flex h-7 w-7 items-center justify-center rounded-full border ${
+                    dark
+                      ? "border-violet-400/40 bg-[#050505]"
+                      : "border-violet-400/40 bg-[#f5f5f5]"
+                  }`}
+                >
+                  <GraduationCap size={15} className="text-violet-500" />
+                </div>
+
+                <p className="text-sm text-violet-500">2023 – Present</p>
+
+                <h3 className="mt-2 text-2xl font-bold">
+                  Bachelor of Technology in Computer Science and Engineering
+                </h3>
+
+                <p
+                  className={`mt-2 ${
+                    dark ? "text-gray-300" : "text-gray-700"
+                  }`}
+                >
+                  Baderia Global Institute of Engineering and Management,
+                  Jabalpur (M.P.)
+                </p>
+
+                <p
+                  className={`mt-2 text-sm ${
+                    dark ? "text-gray-500" : "text-gray-500"
+                  }`}
+                >
+                  Rajiv Gandhi Proudyogiki Vishwavidyalaya (RGPV), Bhopal
+                </p>
+
+                <p
+                  className={`mt-4 inline-block rounded-full px-4 py-2 text-sm ${
+                    dark
+                      ? "bg-white/5 text-gray-300"
+                      : "bg-black/5 text-gray-700"
+                  }`}
+                >
+                  CGPA: 7.88
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="relative mt-16"
+              >
+                <div
+                  className={`absolute -left-[43px] top-1 flex h-7 w-7 items-center justify-center rounded-full border ${
+                    dark
+                      ? "border-white/20 bg-[#050505]"
+                      : "border-black/20 bg-[#f5f5f5]"
+                  }`}
+                >
+                  <Award size={15} className="text-gray-500" />
+                </div>
+
+                <p className="text-sm text-gray-500">2022 – 2023</p>
+
+                <h3 className="mt-2 text-2xl font-bold">
+                  Higher Secondary Certification
+                </h3>
+
+                <p className="mt-2 text-gray-500">Central Academy School</p>
+
+                <p className="mt-3 text-gray-500">MP Board • 87%</p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="relative mt-16"
+              >
+                <div
+                  className={`absolute -left-[43px] top-1 flex h-7 w-7 items-center justify-center rounded-full border ${
+                    dark
+                      ? "border-white/20 bg-[#050505]"
+                      : "border-black/20 bg-[#f5f5f5]"
+                  }`}
+                >
+                  <Award size={15} className="text-gray-500" />
+                </div>
+
+                <p className="text-sm text-gray-500">2020 – 2021</p>
+
+                <h3 className="mt-2 text-2xl font-bold">
+                  Secondary School Certification
+                </h3>
+
+                <p className="mt-2 text-gray-500">Spring Dales School</p>
+
+                <p className="mt-3 text-gray-500">MP Board • 85.4%</p>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            CERTIFICATIONS
+        ====================================================== */}
+
+        <section
+          id="certifications"
+          className={`border-t px-6 py-24 lg:px-10 ${
+            dark ? "border-white/10" : "border-black/10"
+          }`}
+        >
+          <div className="mx-auto max-w-7xl">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <p className="text-sm uppercase tracking-[0.3em] text-violet-500">
+                Certifications & Training
+              </p>
+
+              <h2 className="mt-4 text-4xl font-bold sm:text-5xl">
+                Learning beyond academics
+              </h2>
+
+              <p
+                className={`mt-5 max-w-2xl leading-7 ${
+                  dark ? "text-gray-400" : "text-gray-600"
+                }`}
+              >
+                Certifications, training programs, and achievements that
+                complement my academic and technical experience.
+              </p>
+            </motion.div>
+
+            <div className="mt-12 grid gap-5 md:grid-cols-2">
+              {certifications.map((cert, index) => (
+                <motion.div
+                  key={cert.number}
+                  initial={{ opacity: 0, y: 25 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.08 }}
+                  whileHover={{ y: -5 }}
+                  className={`rounded-2xl border p-6 backdrop-blur-xl transition ${
+                    dark
+                      ? "border-white/10 bg-white/[0.03] hover:border-violet-400/30"
+                      : "border-black/10 bg-black/[0.03] hover:border-violet-500/30"
+                  }`}
+                >
+                  <div className="flex items-start justify-between gap-5">
+                    <div className="flex items-start gap-4">
+                      <div
+                        className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-2xl ${
+                          dark ? "bg-white/5" : "bg-black/5"
+                        }`}
+                      >
+                        {cert.icon}
+                      </div>
+
+                      <div>
+                        <p className="text-xs tracking-[0.2em] text-gray-500">
+                          CERTIFICATE {cert.number}
+                        </p>
+
+                        <h3 className="mt-1 text-lg font-semibold leading-6">
+                          {cert.title}
+                        </h3>
+
+                        <p className="mt-2 text-sm text-violet-500">
+                          {cert.issuer}
+                        </p>
+                      </div>
+                    </div>
+
+                    <span
+                      className={`shrink-0 rounded-full px-3 py-1 text-xs ${
+                        dark
+                          ? "bg-white/5 text-gray-400"
+                          : "bg-black/5 text-gray-500"
+                      }`}
+                    >
+                      {cert.date}
+                    </span>
+                  </div>
+
+                  <div
+                    className={`mt-5 flex items-center justify-between border-t pt-5 ${
+                      dark ? "border-white/10" : "border-black/10"
+                    }`}
+                  >
+                    <span className="text-sm text-gray-500">
+                      {cert.type}
+                    </span>
+
+                    <a
+                      href={cert.certificate}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-sm font-medium transition hover:text-violet-500"
+                    >
+                      <FileText size={16} />
+                      View Certificate
+                      <ExternalLink size={15} />
+                    </a>
+                  </div>
+
+                  {cert.details && (
+                    <p
+                      className={`mt-4 border-t pt-4 text-sm leading-6 ${
+                        dark
+                          ? "border-white/5 text-gray-500"
+                          : "border-black/5 text-gray-500"
+                      }`}
+                    >
+                      {cert.details}
+                    </p>
+                  )}
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            CONTACT
+        ====================================================== */}
+
+        <section
+          id="contact"
+          className={`border-t px-6 py-24 lg:px-10 ${
+            dark ? "border-white/10" : "border-black/10"
+          }`}
+        >
+          <div className="mx-auto max-w-7xl">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="grid gap-12 lg:grid-cols-2"
+            >
+              <div>
+                <p className="text-sm uppercase tracking-[0.3em] text-violet-500">
+                  Contact
+                </p>
+
+                <h2 className="mt-4 text-5xl font-bold leading-tight sm:text-6xl">
+                  Let&apos;s build
+                  <br />
+                  something.
+                </h2>
+
+                <p
+                  className={`mt-6 max-w-lg leading-7 ${
+                    dark ? "text-gray-400" : "text-gray-600"
+                  }`}
+                >
+                  I&apos;m open to opportunities, internships, collaborations,
+                  and interesting software development projects.
+                </p>
+              </div>
+
+              <div className="space-y-4">
+                {/* EMAIL */}
+
+                <div
+                  className={`flex items-center gap-4 rounded-2xl border p-5 transition hover:-translate-y-1 ${
+                    dark
+                      ? "border-white/10 bg-white/[0.03]"
+                      : "border-black/10 bg-black/[0.03]"
+                  }`}
+                >
+                  <Mail className="text-violet-500" />
+
+                  <div>
+                    <p className="text-xs uppercase tracking-wider text-gray-500">
+                      Email
+                    </p>
+
+                    <a
+                      href="mailto:sahukamleshkumar404@gmail.com"
+                      className="mt-1 block text-sm transition hover:text-violet-500"
+                    >
+                      sahukamleshkumar404@gmail.com
+                    </a>
+                  </div>
+                </div>
+
+                {/* PHONE */}
+
+                <div
+                  className={`flex items-center gap-4 rounded-2xl border p-5 transition hover:-translate-y-1 ${
+                    dark
+                      ? "border-white/10 bg-white/[0.03]"
+                      : "border-black/10 bg-black/[0.03]"
+                  }`}
+                >
+                  <Phone className="text-violet-500" />
+
+                  <div>
+                    <p className="text-xs uppercase tracking-wider text-gray-500">
+                      Phone
+                    </p>
+
+                    <a
+                      href="tel:+917869676237"
+                      className="mt-1 block text-sm transition hover:text-violet-500"
+                    >
+                      +91 7869676237
+                    </a>
+                  </div>
+                </div>
+
+                {/* LOCATION */}
+
+                <div
+                  className={`flex items-center gap-4 rounded-2xl border p-5 transition hover:-translate-y-1 ${
+                    dark
+                      ? "border-white/10 bg-white/[0.03]"
+                      : "border-black/10 bg-black/[0.03]"
+                  }`}
+                >
+                  <MapPin className="text-violet-500" />
+
+                  <div>
+                    <p className="text-xs uppercase tracking-wider text-gray-500">
+                      Location
+                    </p>
+
+                    <p className="mt-1 text-sm">
+                      Madhya Pradesh, India
+                    </p>
+                  </div>
+                </div>
+
+                {/* BUTTONS */}
+
+                <div className="flex flex-wrap gap-3 pt-3">
+                  <a
+                    href="mailto:sahukamleshkumar404@gmail.com"
+                    className="flex items-center gap-2 rounded-full bg-violet-600 px-5 py-3 text-sm font-medium text-white transition hover:-translate-y-1 hover:bg-violet-500"
+                  >
+                    <Mail size={17} />
+                    Email Me
+                  </a>
+
+                  <a
+                    href="tel:+917869676237"
+                    className={`flex items-center gap-2 rounded-full border px-5 py-3 text-sm font-medium transition hover:-translate-y-1 ${
+                      dark
+                        ? "border-white/15 hover:border-violet-400"
+                        : "border-black/15 hover:border-violet-500"
+                    }`}
+                  >
+                    <Phone size={17} />
+                    Call Me
+                  </a>
+
+                  <a
+                    href="https://www.linkedin.com/in/kamlesh-kumar-sahu-9b361a309/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`flex items-center gap-2 rounded-full border px-5 py-3 text-sm font-medium transition hover:-translate-y-1 ${
+                      dark
+                        ? "border-white/15 hover:border-violet-400"
+                        : "border-black/15 hover:border-violet-500"
+                    }`}
+                  >
+                    <FaLinkedinIn size={17} />
+                    LinkedIn
+                  </a>
+
+                  <a
+                    href="https://github.com/KamleshSahu874"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`flex items-center gap-2 rounded-full border px-5 py-3 text-sm font-medium transition hover:-translate-y-1 ${
+                      dark
+                        ? "border-white/15 hover:border-violet-400"
+                        : "border-black/15 hover:border-violet-500"
+                    }`}
+                  >
+                    <FaGithub size={17} />
+                    GitHub
+                  </a>
+
+                  <a
+                    href="/resume.pdf"
+                    download="Kamlesh_Kumar_Sahu_Resume.pdf"
+                    className={`flex items-center gap-2 rounded-full border px-5 py-3 text-sm font-medium transition hover:-translate-y-1 ${
+                      dark
+                        ? "border-white/15 hover:border-violet-400"
+                        : "border-black/15 hover:border-violet-500"
+                    }`}
+                  >
+                    <Download size={17} />
+                    Resume
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            FOOTER
+        ====================================================== */}
+
+        <footer
+          className={`border-t px-6 py-8 lg:px-10 ${
+            dark ? "border-white/10" : "border-black/10"
+          }`}
+        >
+          <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-5 sm:flex-row">
+            <p className="text-sm text-gray-500">
+              © {new Date().getFullYear()} Kamlesh Kumar Sahu. All rights
+              reserved.
+            </p>
+
+            <button
+              onClick={() => scrollToSection("home")}
+              className="flex items-center gap-2 text-sm text-gray-500 transition hover:text-violet-500"
+            >
+              Back to top
+              <ArrowUp size={16} />
+            </button>
+          </div>
+        </footer>
+      </div>
     </main>
   );
 }
