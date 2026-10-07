@@ -14,16 +14,23 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "KKS | Portfolio",
-description: "Portfolio of Kamlesh Kumar Sahu — B.Tech CSE Student, Java & Python Developer.",
+  description:
+    "Portfolio of Kamlesh Kumar Sahu — B.Tech CSE Student, Java & Python Developer.",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {children}
+      </body>
     </html>
   );
 }

@@ -964,7 +964,7 @@ export default function Home() {
                       : "bg-black/5 text-gray-700"
                   }`}
                 >
-                  CGPA: 7.88
+                  CGPA: 7.99
                 </p>
               </motion.div>
 
