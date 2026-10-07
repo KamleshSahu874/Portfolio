@@ -63,7 +63,16 @@ const projects = [
    CERTIFICATIONS
 ========================================================= */
 
-const certifications = [
+const certifications: {
+  number: string;
+  title: string;
+  issuer: string;
+  date: string;
+  type: string;
+  icon: string;
+  certificate: string;
+  details?: string;
+}[] = [
   {
     number: "01",
     title: "Smart India Hackathon 2025",
