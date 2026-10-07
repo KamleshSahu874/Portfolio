@@ -90,8 +90,6 @@ const certifications = [
     type: "Virtual Internship",
     icon: "⚙️",
     certificate: "/certificates/servicenow.pdf",
-    details:
-      "ServiceNow learning and internship program covering ServiceNow Administration Fundamentals, Introduction to Flows, Reports, ATF Essentials, Introduction to Agentic AI, Micro Certification and CSA Exam Preparation.",
   },
   {
     number: "04",
